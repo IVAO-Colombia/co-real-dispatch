@@ -1,0 +1,1 @@
+<div class=""><a href="{{route('book.pilot')}}" class="text-cyan-500 text-6xl underline">Reservar piloto</a></div>

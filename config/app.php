@@ -123,4 +123,22 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | IVAO Configuration
+    |--------------------------------------------------------------------------
+    */
+
+    'auth_ivao' => [
+        'client_id' => env('IVAO_CLIENT_ID'),
+        'client_secret' => env('IVAO_CLIENT_SECRET'),
+    ],
+
+    'data_ivao' => [
+        'event_name' => env('IVAO_EVENT_NAME', "Real Dispatch"),
+        'division' => env('IVAO_DIVISION'),
+    ],
+
 ];
