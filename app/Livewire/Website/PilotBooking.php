@@ -13,35 +13,73 @@ use Livewire\Component;
 class PilotBooking extends Component
 {
     public $user;
-    public $modal = false;
 
+    // To dataa
     public $aircraft, $hub, $airline;
-    public $airlines = [];
+
+    // Screens status
+    public $hubScreen = true,
+        $airlineScreen = false,
+        $aircraftScreen = false;
+
+
+    public $airports = [];
 
     public function mount()
     {
         $this->user = Auth::user();
 
-        $this->airlines = [
-            "avianca" => [
-                "hub" => ["SKBO", "SKRG", "SKBQ"],
-                "aircraft" => ["A320", "A319"],
-                "name" => "Avianca"
+        $this->airports = [
+            "SKBO" => [
+                "airlines" => [
+                    "Avianca" => [
+                        "aircrafts" => ["A320", "A319"],
+                    ],
+                    "Wingo" => [
+                        "aircrafts" => ["B738"],
+                    ],
+                    "Latam" => [
+                        "aircrafts" => ["A320"],
+                    ],
+                    "Clic" => [
+                        "aircrafts" => ["AT42", "AT72"],
+                    ],
+                ],
+                "name" => "Aeropuerto Internacional El Dorado",
+                "oaci" => "SKBO"
             ],
-            "latam" => [
-                "hub" => ["SKBO", "SKRG", "SKBQ"],
-                "aircraft" => ["A320", "A319"],
-                "name" => "Latam"
+            "SKRG" => [
+                "airlines" => [
+                    "Avianca" => [
+                        "aircrafts" => ["A320", "A319"],
+                    ],
+                    "Wingo" => [
+                        "aircrafts" => ["B738"],
+                    ],
+                    "Latam" => [
+                        "aircrafts" => ["A320"],
+                    ]
+                ],
+                "name" => "Aeropuerto Internacional José María Córdova",
+                "oaci" => "SKRG"
             ],
-            "wingo" => [
-                "hub" => ["SKBO", "SKRG", "SKBQ"],
-                "aircraft" => ["B738"],
-                "name" => "Wingo"
-            ],
-            "clic" => [
-                "hub" => ["SKBO", "SKBQ"],
-                "aircraft" => ["ATR42", "ATR72"],
-                "name" => "Wingo"
+            "SKBQ" => [
+                "airlines" => [
+                    "Avianca" => [
+                        "aircrafts" => ["A320", "A319"],
+                    ],
+                    "Wingo" => [
+                        "aircrafts" => ["B738"],
+                    ],
+                    "Latam" => [
+                        "aircrafts" => ["A320"],
+                    ],
+                    "Clic" => [
+                        "aircrafts" => ["AT42", "AT72"],
+                    ],
+                ],
+                "name" => "Aeropuerto Internacional Ernesto Cortissoz",
+                "oaci" => "SKBQ"
             ],
         ];
     }
@@ -51,21 +89,14 @@ class PilotBooking extends Component
         return view('livewire.website.book');
     }
 
-    public function showModal()
-    {
-        $this->modal = true;
-    }
-
-    public function closeModal()
-    {
-        $this->modal = false;
-    }
-
-    public function booking($hub)
+    public function selectAirline($hub)
     {
         $this->hub = $hub;
-    }
+        $airlines = (object) $this->airports[$hub];
 
+        $this->hubScreen = false;
+        $this->airlineScreen = true;
+    }
 
     public function store()
     {
