@@ -20,6 +20,6 @@ class PilotBooking extends Model
 
     public function pilot(): HasOne
     {
-        return $this->hasOne(User::class, 'user_id');
+        return $this->hasOne(User::class, 'id');
     }
 }
