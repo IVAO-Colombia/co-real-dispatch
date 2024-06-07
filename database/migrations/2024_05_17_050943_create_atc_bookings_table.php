@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\AtcBookingStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,7 +14,15 @@ return new class extends Migration
     {
         Schema::create('atc_bookings', function (Blueprint $table) {
             $table->id();
+            $table->string('dependence');
+            $table->time('start_at');
+            $table->time('end_at');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->integer('order')->unsigned()->nullable();
+            $table->enum("status", ["1", "2", "3"])->default(AtcBookingStatus::Pending);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

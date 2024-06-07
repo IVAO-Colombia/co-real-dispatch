@@ -1,5 +1,4 @@
-<div class="relative pt-2 lg:pt-2 min-h-screen">
-
+<div class="relative pt-2 lg:pt-2">
     <div class="bg-cover w-full flex justify-center items-center"
         style="background-image: url('/images/mybackground.jpeg');">
         <div class="w-full bg-white p-5  bg-opacity-40 backdrop-filter backdrop-blur-lg">
@@ -42,8 +41,4 @@
             </div>
         </div>
     </div>
-
-    {{$aircraft}}
-    {{$airline}}
-    {{$hub}}
 </div>

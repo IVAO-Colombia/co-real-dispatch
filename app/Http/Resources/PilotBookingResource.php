@@ -21,8 +21,8 @@ class PilotBookingResource extends JsonResource
             "aircraft" => $this->aircraft,
             "pilot" => [
                 "vid" => $this->pilot->vid,
-                "first_name" => $this->pilot->firstName,
-                "last_name" => $this->pilot->lastName,
+                "first_name" => $this->pilot->firstname,
+                "last_name" => $this->pilot->lastname,
                 "division" => $this->pilot->division,
                 "rating_atc" => $this->pilot->ratingatc,
                 "rating_pilot" => $this->pilot->ratingpilot,

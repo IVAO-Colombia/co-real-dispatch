@@ -8,6 +8,7 @@ use App\Http\Resources\PilotBookingResource;
 use App\Models\PilotBooking;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class PilotBookingController extends Controller
@@ -25,14 +26,26 @@ class PilotBookingController extends Controller
      */
     public function show($vid)
     {
-        // Search if pilot exist by VID
-        $pilot = User::where('vid', $vid)->first();
-        // Search Pilot booking by User Id
-        $booking = PilotBooking::where('user_id', $pilot->id)->first();
-
-        if (isset($booking)) {
-            return new PilotBookingResource($booking);
-        } else {
+        try {
+            // Search if pilot exist by VID
+            $pilot = User::where('vid', $vid)->first();
+            if (isset($pilot)) {
+                // Search Pilot booking by User Id
+                $booking = PilotBooking::where('user_id', $pilot->id)->first();
+            } else {
+                return response()->json([
+                    "Error" => "Not found registers with VID $vid, try again or later"
+                ], 404);
+            }
+            if (isset($booking)) {
+                return new PilotBookingResource($booking);
+            } else {
+                return response()->json([
+                    "Error" => "Not found registers with VID $vid, try again or later"
+                ], 404);
+            }
+        } catch (\Throwable $th) {
+            Log::info(throw $th);
             return response()->json([
                 "Error" => "Not found registers with VID $vid, try again or later"
             ], 404);
@@ -41,27 +54,40 @@ class PilotBookingController extends Controller
 
     public function store($vid, Request $request)
     {
-        $documents = [];
-        foreach ($request->file() as $file) {
-            $filePath = Storage::disk('documents')->put('/', $file);
-            $documents[] = env('APP_URL') . "/storage/briefing/" . $filePath;
-        }
+        try {
+            $documents = [];
+            foreach ($request->file() as $file) {
+                $filePath = Storage::disk('documents')->put('/', $file);
+                $documents[] = env('APP_URL') . "/storage/briefing/" . $filePath;
+            }
 
-        // Search if pilot exist by VID
-        $pilot = User::where('vid', $vid)->first();
-        // Search Pilot booking by User Id
-        $booking = PilotBooking::where('user_id', $pilot->id)->first();
+            // Search if pilot exist by VID
+            $pilot = User::where('vid', $vid)->first();
+            // Search Pilot booking by User Id
+            if (isset($pilot)) {
+                $booking = PilotBooking::where('user_id', $pilot->id)->first();
+            } else {
+                return response()->json([
+                    "Error" => "Not found registers with VID $vid, try again or later"
+                ], 404);
+            }
 
-        $pilotBooking = PilotBooking::updateOrCreate(
-            ["id" => $booking->id],
-            ["briefing" => json_encode($documents)]
-        );
+            $pilotBooking = PilotBooking::updateOrCreate(
+                ["id" => $booking->id],
+                ["briefing" => $documents]
+            );
 
-        if (isset($booking)) {
-            return new PilotBookingResource($booking);
-        } else {
+            if (isset($booking)) {
+                return new PilotBookingResource($booking);
+            } else {
+                return response()->json([
+                    "Error" => "Not found registers with VID $vid, try again or later"
+                ], 404);
+            }
+        } catch (\Throwable $th) {
+            Log::info(throw $th);
             return response()->json([
-                "Error" => "Not found registers with VID $vid, try again or later"
+                "Error" => "Not found registers with VID $vid or and error as ocurred, try again or later"
             ], 404);
         }
     }

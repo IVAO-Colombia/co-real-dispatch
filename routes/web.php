@@ -1,9 +1,15 @@
 <?php
 
 use App\Http\Controllers\{IvaoController};
-use App\Livewire\Website\{Home, PilotBooking};
+use App\Livewire\Admin\AtcBooking as AdminAtcBooking;
+use App\Livewire\Admin\AtcBookingView;
+use App\Livewire\Website\{AtcBooking, Home, PilotBooking};
 use Illuminate\Support\Facades\{Auth, Route};
 
+use App\Livewire\Admin\Home as AdminHome;
+use App\Livewire\Admin\PilotBooking as AdminPilotBooking;
+use App\Livewire\Admin\PilotBookingView;
+use Tests\Feature\Livewire\Admin\AtcBookingTest;
 
 Route::get('/', Home::class)->name('home');
 
@@ -18,12 +24,17 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::prefix('book')->group(function () {
+    Route::prefix('booking')->group(function () {
         Route::get('pilot', PilotBooking::class)->name('book.pilot');
+        Route::get('atc', AtcBooking::class)->name('book.atc');
+        Route::get('atc/view', AtcBookingView::class)->name('booking.atc.view');
+        Route::get('pilot/view', PilotBookingView::class)->name('booking.pilot.view');
     });
-    // Route::get('/dashboard', function () {
-    //     return view('dashboard');
-    // })->name('dashboard');
+    Route::prefix('admin')->group(function () {
+        Route::get('/pilot', AdminPilotBooking::class)->name('admin.pilot');
+        Route::get('/atc', AdminAtcBooking::class)->name('admin.atc');
+    });
+    Route::get('/dashboard', AdminHome::class)->name('dashboard');
 });
 
 

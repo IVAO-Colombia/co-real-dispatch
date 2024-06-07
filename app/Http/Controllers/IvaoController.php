@@ -200,8 +200,8 @@ class IvaoController extends Controller
         } else {
             $newUser = User::create([
                 "vid" => intval($user["id"]),
-                "firstName" => $user["firstName"],
-                "lastName" => $user["lastName"],
+                "firstname" => $user["firstName"],
+                "lastname" => $user["lastName"],
                 "email" => $user["email"],
                 "ratingatc" => intval($user["rating"]["atcRating"]["id"]),
                 "ratingpilot" => intval($user["rating"]["pilotRating"]["id"]),
@@ -215,7 +215,7 @@ class IvaoController extends Controller
         }
 
         $userlog = Auth::user();
-
+        syncTeams($userlog);
         return redirect()->route("home");
     }
 }

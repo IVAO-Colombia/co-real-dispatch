@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger("user_id");
             $table->string("hub");
             $table->string("aircraft");
-            $table->string("briefing");
+            $table->string("briefing")->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

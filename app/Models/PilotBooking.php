@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class PilotBooking extends Model
 {
@@ -18,8 +18,8 @@ class PilotBooking extends Model
         "briefing"
     ];
 
-    public function pilot(): HasOne
+    public function pilot(): BelongsTo
     {
-        return $this->hasOne(User::class, 'id');
+        return $this->BelongsTo(User::class, 'user_id');
     }
 }

@@ -21,93 +21,79 @@ class PilotBooking extends Component
     public $hubScreen = true,
         $airlineScreen = false,
         $aircraftScreen = false;
-
-
-    public $airports = [];
+    public $modal = false;
+    public $airports;
 
     public function mount()
     {
         $this->user = Auth::user();
 
-        $this->airports = [
-            "SKBO" => [
-                "airlines" => [
-                    "Avianca" => [
-                        "aircrafts" => ["A320", "A319"],
-                    ],
-                    "Wingo" => [
-                        "aircrafts" => ["B738"],
-                    ],
-                    "Latam" => [
-                        "aircrafts" => ["A320"],
-                    ],
-                    "Clic" => [
-                        "aircrafts" => ["AT42", "AT72"],
-                    ],
-                ],
-                "name" => "Aeropuerto Internacional El Dorado",
-                "oaci" => "SKBO"
-            ],
-            "SKRG" => [
-                "airlines" => [
-                    "Avianca" => [
-                        "aircrafts" => ["A320", "A319"],
-                    ],
-                    "Wingo" => [
-                        "aircrafts" => ["B738"],
-                    ],
-                    "Latam" => [
-                        "aircrafts" => ["A320"],
-                    ]
-                ],
-                "name" => "Aeropuerto Internacional José María Córdova",
-                "oaci" => "SKRG"
-            ],
-            "SKBQ" => [
-                "airlines" => [
-                    "Avianca" => [
-                        "aircrafts" => ["A320", "A319"],
-                    ],
-                    "Wingo" => [
-                        "aircrafts" => ["B738"],
-                    ],
-                    "Latam" => [
-                        "aircrafts" => ["A320"],
-                    ],
-                    "Clic" => [
-                        "aircrafts" => ["AT42", "AT72"],
-                    ],
-                ],
-                "name" => "Aeropuerto Internacional Ernesto Cortissoz",
-                "oaci" => "SKBQ"
-            ],
-        ];
+        $this->airports = airportBookings();
     }
 
     public function render()
     {
+        // dd($this->airports->SKBO["airlines"]);
         return view('livewire.website.book');
+    }
+
+    public function closeModal()
+    {
+        // $this->resetExcept("search");
+        $this->modal = false;
+    }
+
+    public function openModal()
+    {
+        $this->modal = true;
     }
 
     public function selectAirline($hub)
     {
         $this->hub = $hub;
-        $airlines = (object) $this->airports[$hub];
 
         $this->hubScreen = false;
         $this->airlineScreen = true;
     }
 
-    public function store()
+    public function selectAircraft($airline)
     {
+        $this->airline = $airline;
 
-        $booking = new ModelsPilotBooking();
+        $this->hubScreen = false;
+        $this->airlineScreen = false;
+        $this->aircraftScreen = true;
+    }
 
-        $booking->airline = $this->airline;
-        $booking->aircraft = $this->aircraft;
-        $booking->hub = $this->hub;
-        $booking->user_id = $this->user->id;
+    public function confirmBooking($aircraft)
+    {
+        $this->aircraft = $aircraft;
 
-        $booking->save();
+        $this->hubScreen = false;
+        $this->airlineScreen = false;
+        $this->aircraftScreen = true;
+        $this->openModal();
+    }
+
+
+
+    public function save()
+    {
+        $othersBookings = ModelsPilotBooking::where('user_id', $this->user->id)->first();
+
+        if (!isset($othersBookings)) {
+            $booking = new ModelsPilotBooking();
+
+            $booking->airline = $this->airline;
+            $booking->aircraft = $this->aircraft;
+            $booking->hub = $this->hub;
+            $booking->user_id = $this->user->id;
+
+            $booking->save();
+            $this->closeModal();
+            return session()->flash('message', "La reserva #$booking->id con HUB en $booking->hub fue exitosa... Recuerde unirse discord mediante discord.co.ivao.aero");
+        } else {
+            return session()->flash('error', "Ya cuenta con una reserva activa");
+        }
     }
 }
