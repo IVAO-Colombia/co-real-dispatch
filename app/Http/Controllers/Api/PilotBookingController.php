@@ -74,7 +74,7 @@ class PilotBookingController extends Controller
 
             $pilotBooking = PilotBooking::updateOrCreate(
                 ["id" => $booking->id],
-                ["briefing" => $documents]
+                ["briefing" => json_encode($documents)]
             );
 
             if (isset($booking)) {
