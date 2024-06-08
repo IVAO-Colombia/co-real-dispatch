@@ -73,6 +73,7 @@
                         <li>Airline: {{$item->airline}}</li>
                         <li>HUB: {{$item->hub}}</li>
                         <li>Rank: {{$facilitysIvaoPilot[$item->pilot->ratingpilot]["name"]}}</li>
+                        <li>Country: {{$item->pilot->country}}</li>
                         <li>Briefing file: {!! $item->briefing ? "<a href='". json_decode($item->briefing)[0] ."'
                                 target='
                                 _blank' class='text-blue-800'>
