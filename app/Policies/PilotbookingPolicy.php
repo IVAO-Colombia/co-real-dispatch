@@ -7,7 +7,7 @@ use App\Models\Team;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class PilotbookingPolicy
+class PilotBookingPolicy
 {
     /**
      * Determine whether the user can view any models.

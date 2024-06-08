@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class PilotBooking extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         "airline",
         "user_id",
