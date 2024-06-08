@@ -70,14 +70,10 @@
                             class='bx bxl-discord-alt bx-md'></i>
                     </a>
                     <dd class="text-gray-500 cursor-pointer">
-                        <input type="hidden" id="discord-link" value="https://discord.co.ivao.aero" disabled readonly>
-                        <button data-copy-to-clipboard-target="discord-link">
-                            <span id="default-msg"><i class='bx bx-link-alt'></i> Dispatch (Click for
-                                copy)
+                        <a target="_blank" href="https://discord.co.ivao.aero">
+                            <span id="default-msg"><i class='bx bx-link-alt'></i> Dispatch link
                             </span>
-                            <span id="success-copy" class="hidden"><i class='bx bx-check'></i> Success copy
-                            </span>
-                        </button>
+                        </a>
                     </dd>
                 </div>
             </dl>
@@ -121,24 +117,4 @@
             </ul>
         </div>
     </div>
-    <script>
-        const clipboard = FlowbiteInstances.getInstance(
-    "CopyClipboard",
-    "discord-link"
-);
-const $defaultMessage = document.getElementById("default-msg");
-const $successMessage = document.getElementById("success-copy");
-
-clipboard.updateOnCopyCallback((clipboard) => {
-    $defaultMessage.classList.add("hidden");
-    $successMessage.classList.remove("hidden");
-
-    // reset to default state
-    setTimeout(() => {
-        $defaultMessage.classList.remove("hidden");
-        $successMessage.classList.add("hidden");
-    }, 2000);
-});
-
-    </script>
 </div>

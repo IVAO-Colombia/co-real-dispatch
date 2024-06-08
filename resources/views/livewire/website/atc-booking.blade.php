@@ -1,3 +1,4 @@
+@section('title', "ATC Booking")
 <div class="">
     {{-- <div class="row">
         <div class="col-md-12 text-center my-3">
