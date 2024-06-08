@@ -79,7 +79,7 @@
             </dl>
         </div>
         <div class="hidden p-4 bg-white rounded-lg md:p-8" id="about" role="tabpanel" aria-labelledby="about-tab">
-            <h2 class="mb-5 text-2xl font-extrabold tracking-tight text-gray-900">Rules and regulations</h2>
+            <h2 class="mb-5 text-2xl font-extrabold tracking-tight text-gray-900">Reglas y regulaciones</h2>
             <!-- List -->
             <ul role="list" class="space-y-4 text-gray-500">
                 <li class="flex space-x-2 rtl:space-x-reverse items-center">
@@ -88,7 +88,7 @@
                         <path
                             d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                     </svg>
-                    <span class="leading-tight">Lorem ipsum dolor</span>
+                    <span class="leading-tight">Debe volar con el indicativo de la aerolínea seleccionada.</span>
                 </li>
                 <li class="flex space-x-2 rtl:space-x-reverse items-center">
                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600" aria-hidden="true"
@@ -96,7 +96,8 @@
                         <path
                             d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                     </svg>
-                    <span class="leading-tight">Lorem ipsum dolor</span>
+                    <span class="leading-tight">Solo son permitidos vuelos en aeronaves pertenecientes a la flota de la
+                        aerolínea (A320, A319, B737, ATR42, ATR72). </span>
                 </li>
                 <li class="flex space-x-2 rtl:space-x-reverse items-center">
                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600" aria-hidden="true"
@@ -104,7 +105,8 @@
                         <path
                             d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                     </svg>
-                    <span class="leading-tight">Lorem ipsum dolor</span>
+                    <span class="leading-tight">Se debe volar con los números de vuelo que fueron entregados por el
+                        despachador, los cuales son obligatorios seguir.</span>
                 </li>
                 <li class="flex space-x-2 rtl:space-x-reverse items-center">
                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600" aria-hidden="true"
@@ -112,7 +114,15 @@
                         <path
                             d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                     </svg>
-                    <span class="leading-tight">Lorem ipsum dolor</span>
+                    <span class="leading-tight">Lea y siga las reglas generales de evento.</span>
+                </li>
+                <li class="flex space-x-2 rtl:space-x-reverse items-center">
+                    <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                    </svg>
+                    <span class="leading-tight">RMK/REALDISPATCH</span>
                 </li>
             </ul>
         </div>
