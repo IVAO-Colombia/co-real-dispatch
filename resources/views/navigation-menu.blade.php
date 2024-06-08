@@ -134,9 +134,11 @@ $nav_links = [
                             </x-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
+                            @can('viewAny', App\Models\PilotBooking::class)
                             <x-dropdown-link href="{{ route('api-tokens.index') }}">
                                 {{ __('API Tokens') }}
                             </x-dropdown-link>
+                            @endcan
                             @endif
 
                             <div class="border-t border-gray-200"></div>
