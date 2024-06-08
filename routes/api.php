@@ -8,5 +8,5 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::resource('pilot/booking', PilotBookingController::class)->only(['index', 'show']);
-Route::post('pilot/booking/{vid}', [PilotBookingController::class, 'store']);
+Route::resource('pilot/booking', PilotBookingController::class)->only(['index', 'show'])->middleware('auth:sanctum');
+Route::post('pilot/booking/{vid}', [PilotBookingController::class, 'store'])->middleware('auth:sanctum');
