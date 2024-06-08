@@ -78,7 +78,7 @@ class PilotBookingController extends Controller
             );
 
             if (isset($booking)) {
-                return new PilotBookingResource($booking);
+                return new PilotBookingResource($pilotBooking);
             } else {
                 return response()->json([
                     "Error" => "Not found registers with VID $vid, try again or later"
