@@ -26,4 +26,10 @@ class AtcBookingView extends Component
             "bookings" => $this->bookings
         ]);
     }
+
+    public function delete($id)
+    {
+        $booking = AtcBooking::findOrFail($id)->delete();
+        return session()->flash("message", "Successfully delete booking");
+    }
 }

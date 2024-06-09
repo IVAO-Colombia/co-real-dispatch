@@ -1,7 +1,19 @@
 <div>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
+            @if (session()->has('message'))
+            <div class="mt-5 flex bg-green-100 rounded-lg p-4 mb-4 text-sm text-green-700" role="alert">
+                <svg class="w-5 h-5 inline mr-3" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <div>
+                    <span class="font-medium">{{session("message")}}
+                </div>
+            </div>
+            @endif
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 justify-items-center mt-5 lg:mt-0">
                 @foreach ($bookings as $item)
                 <div
@@ -18,7 +30,7 @@
                         <li>Status: {{App\Enums\AtcBookingStatus::from($item->status)->name}}</li>
                     </ul>
                     </p>
-                    <a href="#"
+                    <button wire:click='delete({{$item->id}})'
                         class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-[#0D2C99] rounded-lg hover:bg-[#3C55AC] focus:ring-4 focus:outline-none focus:ring-blue-300">
                         Eliminar
                         <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
@@ -26,7 +38,7 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M1 5h12m0 0L9 1m4 4L9 9" />
                         </svg>
-                    </a>
+                    </button>
                 </div>
                 @endforeach
             </div>
