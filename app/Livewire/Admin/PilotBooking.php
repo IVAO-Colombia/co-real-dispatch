@@ -2,11 +2,16 @@
 
 namespace App\Livewire\Admin;
 
+use App\Exports\PilotBookingExport;
+use App\Helpers\Bookings;
+use App\Http\Resources\PilotBookingCollection;
 use App\Models\PilotBooking as ModelsPilotBooking;
 use App\Models\User;
+use Carbon\Carbon;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Url;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
 
 #[Layout('layouts.app')]
 class PilotBooking extends Component
@@ -86,6 +91,12 @@ class PilotBooking extends Component
     public function closeModal()
     {
         $this->modal = false;
+    }
+
+    public function export()
+    {
+        $fileName = Bookings::getExportName("Pilot");
+        return Excel::download(new PilotBookingExport, $fileName . ".xlsx");
     }
 
     public function showBooking($id)

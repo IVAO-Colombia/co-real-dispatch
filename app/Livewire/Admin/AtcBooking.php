@@ -3,11 +3,17 @@
 namespace App\Livewire\Admin;
 
 use App\Enums\AtcBookingStatus;
+use App\Exports\AtcBookingExport;
+use App\Exports\PilotBookingExport;
+use App\Helpers\Bookings;
+use App\Http\Resources\PilotBookingCollection;
 use App\Models\AtcBooking as ModelsAtcBooking;
 use App\Models\User;
+use Carbon\Carbon;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Url;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AtcBooking extends Component
 {
@@ -95,6 +101,12 @@ class AtcBooking extends Component
         $booking->save();
         return session()->flash("message", "Successfully rejected");
     }
+    public function export()
+    {
+        $fileName = Bookings::getExportName("Atc");
+        return Excel::download(new AtcBookingExport, $fileName . ".xlsx");
+    }
+
 
     public function delete($id)
     {

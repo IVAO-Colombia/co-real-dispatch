@@ -74,6 +74,11 @@
                     </div>
 
                 </div>
+                <div class="w-full md:w-auto">
+                    <button type="button" wire:click='export'
+                        class="text-white bg-[#1d6f42] hover:bg-[#2EC662] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Export
+                        to Excel</button>
+                </div>
             </div>
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 justify-items-center mt-5 lg:mt-0">
                 @foreach ($bookings as $item)

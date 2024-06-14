@@ -3,6 +3,8 @@
 namespace App\Helpers;
 
 use App\Models\PilotBooking;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class Bookings
 {
@@ -21,5 +23,12 @@ class Bookings
         } else {
             return "N/A";
         }
+    }
+
+    public static function getExportName($type = "Pilot")
+    {
+        $user = Auth::user();
+        $date = Carbon::now();
+        return "$type" . "booking_request_$user->vid" . "_$date";
     }
 }
