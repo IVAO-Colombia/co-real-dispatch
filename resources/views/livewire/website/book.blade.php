@@ -25,12 +25,14 @@
     </div>
     @endif
     @if ($hubScreen)
-    @include('livewire.website.widget.pilot.hub-select')
-    @elseif ($airlineScreen)
-    <h3 class="text-3xl text-center font-bold text-[#3C55AC]">Seleccione la aerolinea</h3>
+    <h3 class="text-3xl text-center font-bold text-[#3C55AC]">¡Ya no se pueden realizar mas reservas!</h3>
+    <h3 class="text-3xl text-center font-bold text-[#3C55AC]">entra a <a href="https://discord.co.ivao.aero"
+            target="_blank">nuestro discord</a></h3>
+    {{-- @include('livewire.website.widget.pilot.hub-select') --}}
+    {{-- @elseif ($airlineScreen)
     @include('livewire.website.widget.pilot.airline-select')
     @elseif ($aircraftScreen)
     <h3 class="text-3xl text-center font-bold text-[#3C55AC]">Seleccione la aeronave</h3>
-    @include('livewire.website.widget.pilot.aircraft-select')
+    @include('livewire.website.widget.pilot.aircraft-select') --}}
     @endif
 </div>
